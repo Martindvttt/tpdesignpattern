@@ -1,0 +1,21 @@
+@startuml
+interface FileComponent {
+    +void showDetails()
+}
+
+class File implements FileComponent {
+    +String name
+    +void showDetails()
+}
+
+class Directory implements FileComponent {
+    +String name
+    +List<FileComponent> components
+    +void showDetails()
+    +void addComponent(FileComponent component)
+    +void removeComponent(FileComponent component)
+}
+
+FileComponent <|.. File
+FileComponent <|.. Directory
+@enduml

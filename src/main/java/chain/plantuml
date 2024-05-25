@@ -1,0 +1,23 @@
+@startuml
+abstract class Validator {
+    +Validator successor
+    +void setSuccessor(Validator successor)
+    +void validate(String data)
+}
+
+class FormatValidator extends Validator {
+    +void validate(String data)
+}
+
+class LengthValidator extends Validator {
+    +void validate(String data)
+}
+
+class UnicityValidator extends Validator {
+    +void validate(String data)
+}
+
+Validator <|-- FormatValidator
+Validator <|-- LengthValidator
+Validator <|-- UnicityValidator
+@enduml

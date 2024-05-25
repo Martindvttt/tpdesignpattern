@@ -1,0 +1,34 @@
+@startuml
+interface DataProcessing {
+    +List<Data> process(List<Data> datas)
+}
+
+class LinearRegression implements DataProcessing {
+    +List<Data> process(List<Data> datas)
+}
+
+class ClassificationTree implements DataProcessing {
+    +List<Data> process(List<Data> datas)
+}
+
+class KMeansPartitioning implements DataProcessing {
+    +List<Data> process(List<Data> datas)
+}
+
+class RecruitmentView {
+    -List<Data> datas
+    -DataProcessing strategy
+    +setStrategy(DataProcessing strategy)
+    +List<Data> analyze()
+}
+
+class Data {
+    +String format
+    +String content
+}
+
+RecruitmentView -> DataProcessing
+DataProcessing <|.. LinearRegression
+DataProcessing <|.. ClassificationTree
+DataProcessing <|.. KMeansPartitioning
+@enduml

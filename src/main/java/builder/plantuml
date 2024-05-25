@@ -1,0 +1,41 @@
+@startuml
+abstract class QueryBuilder {
+    +String buildLimitQuery(int limit)
+    +String buildSubstringQuery(String field, int start, int length)
+}
+
+class OracleQueryBuilder extends QueryBuilder {
+    +String buildLimitQuery(int limit)
+    +String buildSubstringQuery(String field, int start, int length)
+}
+
+class MySQLQueryBuilder extends QueryBuilder {
+    +String buildLimitQuery(int limit)
+    +String buildSubstringQuery(String field, int start, int length)
+}
+
+abstract class Program {
+    +void addLimitQuery(int limit)
+    +void addSubstringQuery(String field, int start, int length)
+    +List<String> getQueries()
+}
+
+class OracleProgram extends Program {
+    +void addLimitQuery(int limit)
+    +void addSubstringQuery(String field, int start, int length)
+}
+
+class MySQLProgram extends Program {
+    +void addLimitQuery(int limit)
+    +void addSubstringQuery(String field, int start, int length)
+}
+
+class ProgramManager {
+    +Program createProgram(String dbType)
+}
+
+QueryBuilder <|.. OracleQueryBuilder
+QueryBuilder <|.. MySQLQueryBuilder
+Program <|.. OracleProgram
+Program <|.. MySQLProgram
+@enduml
